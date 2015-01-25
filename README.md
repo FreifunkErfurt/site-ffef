@@ -2,7 +2,7 @@
     
     git clone git://github.com/freifunk-gluon/gluon.git            # Get the official Gluon repository
     cd gluon
-    git checkout v201x.x					   # Switch to Gluon release if not master (see below)
+    git checkout v201x.x                                           # Switch to Gluon release if not master (see below)
     git clone git://github.com/freifunkerfurt/site-ffef.git site   # Get the Freifunk Erfurt site repository
     make update                                                    # Get other repositories used by Gluon
     make                                                           # Build Gluon
