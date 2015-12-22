@@ -22,6 +22,11 @@ msgstr ""
 "Erfurt servers. "
 "To register the key send it together with your node's name (<em><%=hostname%></em>) to "
 "<a href=\"mailto:bytespeicher@pennewiss.de\">bytespeicher@pennewiss.de</a>."
+"<div class=\"the-key\">"
+" # <%= hostname %>"
+" <br/>"
+"<%= pubkey %>"
+"</div>"
 
 
 msgid "gluon-config-mode:reboot"
