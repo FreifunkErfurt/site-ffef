@@ -27,6 +27,7 @@ Please see [the official Gluon documentation](http://gluon.readthedocs.io/en/lat
 
 ### Gluon releases used for specific Freifunk Erfurt Firmware builds
 
+- 1.2: v2016.1
 - 1.1: v2015.1.2 (build with BROKEN=1)
 - 1.0: v2015.1.2
 - 0.7: v2014.4
