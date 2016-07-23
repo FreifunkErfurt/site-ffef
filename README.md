@@ -1,6 +1,6 @@
 # Freifunk Erfurt - Firmware builds
 
-#### How to build the Gluon based Freifunk Erfurt Firmware
+### How to build the Gluon based Freifunk Erfurt Firmware
 
     git clone git://github.com/freifunk-gluon/gluon.git            # Get the official Gluon repository
     cd gluon
@@ -11,7 +11,7 @@
     make update                                                    # Get other repositories used by Gluon
     make GLUON_TARGET=target                                       # Build Gluon for a target
 
-### Targets
+#### Targets
 
 To see a complete list of supported targets, call
 
@@ -21,11 +21,11 @@ without setting GLUON_TARGET.
 
 For further informations about supported hardware and targets please see [Supported Devices & Architectures ](http://gluon.readthedocs.io/en/latest/index.html#supported-devices-architectures) in the official Gluon documentation.
 
-### Additional informations
+#### Additional informations
 
 Please see [the official Gluon documentation](http://gluon.readthedocs.io/en/latest/user/getting_started.html) for a detailed explanation of the build process. You can also consult [the official Gluon repository](https://github.com/freifunk-gluon/gluon) for additional informations.
 
-#### Gluon releases used for specific Freifunk Erfurt Firmware builds
+### Gluon releases used for specific Freifunk Erfurt Firmware builds
 
 - 1.0: v2015.1.2
 - 0.7: v2014.4
