@@ -8,6 +8,7 @@
     git clone git://github.com/freifunkerfurt/site-ffef.git site   # Get the Freifunk Erfurt site repository
     cd site
     git checkout v201x.x                                           # Switch to site config release if not master (see below or tags)
+    cd ..
     make update                                                    # Get other repositories used by Gluon
     make GLUON_TARGET=target                                       # Build Gluon for a target
 
