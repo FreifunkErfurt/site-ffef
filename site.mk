@@ -33,3 +33,6 @@ GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 GLUON_PRIORITY ?= 0
 
 GLUON_LANGS ?= de en
+
+# Build images to update from EU-specific firmware (TP-Link)
+GLUON_REGION := eu
