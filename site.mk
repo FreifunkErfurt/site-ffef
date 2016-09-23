@@ -36,3 +36,6 @@ GLUON_LANGS ?= de en
 
 # Build images to update from EU-specific firmware (TP-Link)
 GLUON_REGION := eu
+
+# Build images with ath10k-based drivers for IBSS (Ad-Hoc)
+GLUON_ATH10K_MESH := ibss
