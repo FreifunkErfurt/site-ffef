@@ -1,6 +1,5 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-14 \
-	gluon-alfred \
 	gluon-autoupdater \
 	gluon-core \
 	gluon-config-mode-hostname \
