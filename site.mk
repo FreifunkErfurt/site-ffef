@@ -22,6 +22,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-status-page \
 	iwinfo \
 	iptables \
+	respondd-module-airtime \
 	haveged
 
 DEFAULT_GLUON_RELEASE := nightly-$(shell date '+%Y%m%d')
