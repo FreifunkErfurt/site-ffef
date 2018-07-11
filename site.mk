@@ -1,6 +1,5 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-14 \
-	gluon-alfred \
 	gluon-autoupdater \
 	gluon-core \
 	gluon-config-mode-hostname \
@@ -23,6 +22,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-status-page \
 	iwinfo \
 	iptables \
+	respondd-module-airtime \
 	haveged
 
 DEFAULT_GLUON_RELEASE := nightly-$(shell date '+%Y%m%d')
