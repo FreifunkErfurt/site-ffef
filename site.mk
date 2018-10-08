@@ -29,7 +29,7 @@ DEFAULT_GLUON_RELEASE := nightly-$(shell date '+%Y%m%d')
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
-GLUON_PRIORITY ?= 0
+GLUON_PRIORITY ?= 14
 
 GLUON_LANGS ?= de en
 
