@@ -30,7 +30,7 @@ DEFAULT_GLUON_RELEASE := 1.3.2
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
-GLUON_PRIORITY ?= 0
+GLUON_PRIORITY ?= 14
 
 GLUON_LANGS ?= de en
 
