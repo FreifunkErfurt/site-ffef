@@ -37,4 +37,4 @@ GLUON_LANGS ?= de en
 GLUON_REGION := eu
 
 # Build images with ath10k-based drivers for IBSS (Ad-Hoc)
-GLUON_ATH10K_MESH := ibss
+GLUON_WLAN_MESH := ibss
