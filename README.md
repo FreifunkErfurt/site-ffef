@@ -35,3 +35,7 @@ Please see [the official Gluon documentation](http://gluon.readthedocs.io/en/lat
 - 0.7: v2014.4
 - 0.6: v2014.3.1
 - 0.5: v2014.3
+
+### BAT15 Version
+
+- 1.6.5 v2018.2.1
