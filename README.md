@@ -6,23 +6,15 @@
 The actual gluon version doesn't work with gcc in version 10. So this steps work for gcc to version 9.
 
 ``` bash
-git clone git://github.com/freifunk-gluon/gluon.git            # Get the official Gluon repository
-
+git clone git://github.com/freifunk-gluon/gluon.git # Get the official Gluon repository
 cd gluon
-
-git checkout v201x.x                                           # Switch to Gluon release if not master (see below)
-
-git clone git://github.com/freifunkerfurt/site-ffef.git site   # Get the Freifunk Erfurt site repository
-
+git checkout v201x.x # Switch to Gluon release if not master (see below)
+git clone git://github.com/freifunkerfurt/site-ffef.git site # Get the Freifunk Erfurt site repository
 cd site
-
-git checkout v201x.x                                           # Switch to site config release if not master (see below or tags)
-
+git checkout v201x.x # Switch to site config release if not master (see below or tags)
 cd ..
-
-make update                                                    # Get other repositories used by Gluon
-
-make GLUON_TARGET=target                                       # Build Gluon for a target
+make update # Get other repositories used by Gluon
+make GLUON_TARGET=target # Build Gluon for a target
 ```
 
 #### GCC with Version 10
@@ -30,26 +22,17 @@ make GLUON_TARGET=target                                       # Build Gluon for
 You need to install docker for on your machine.
 
 ``` bash
-git clone git://github.com/freifunk-gluon/gluon.git            # Get the official Gluon repository
-
+git clone git://github.com/freifunk-gluon/gluon.git # Get the official Gluon repository
 cd gluon
-git checkout v201x.x.x                                           # Switch to Gluon release if not master (see below)
-
-git clone git://github.com/freifunkerfurt/site-ffef.git site   # Get the Freifunk Erfurt site repository
-
+git checkout v201x.x.x # Switch to Gluon release if not master (see below)
+git clone git://github.com/koleesch/site-ffef.git site # Get the Freifunk Erfurt site repository
 cd site
-
-git checkout v201x.x.x                                           # Switch to site config release if not master (see below or tags)
-
+git checkout trunk # Switch to site config release if not master (see below or tags)
 cd ..
-
 docker build -t gluon:v20xx.x.x contrib # build a docker container with the specific gluon version
-
 docker run -it --rm -v $(pwd):/gluon gluon:v20xx.x.x # starts the docker container
-
-make update                                                    # Get other repositories used by Gluon
-
-make GLUON_TARGET=target                                       # Build Gluon for a target
+make update # Get other repositories used by Gluon
+make GLUON_TARGET=target # Build Gluon for a target
 ```
 #### Targets
 
