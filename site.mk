@@ -1,6 +1,7 @@
 GLUON_FEATURES := \
 	alfred \
 	autoupdater \
+	config-mode-domain-select \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
@@ -11,10 +12,10 @@ GLUON_FEATURES := \
 	respondd \
 	status-page \
 	web-advanced \
-	web-mesh-vpn-fastd \
 	web-private-wifi \
 	web-wizard
-
+#web-mesh-vpn-fastd \
+	
 # musste raus um erst mal eine Version zu erstellen
 #cconfig-mode-geo-location-osm \
 	
@@ -23,7 +24,10 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := 1.6.0
+DEFAULT_GLUON_RELEASE := 1.7.0
+
+# Allow Multidomains
+GLUON_MULTIDOMAIN=1
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
@@ -38,4 +42,6 @@ GLUON_REGION := eu
 # Build images with ath10k-based drivers for IBSS (Ad-Hoc)
 GLUON_ATH10K_MESH := ibss
 
+# Build for deprecated devices
+# possible values= 0 or full
 GLUON_DEPRECATED=full

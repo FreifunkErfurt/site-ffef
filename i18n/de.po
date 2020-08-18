@@ -44,3 +44,12 @@ msgstr ""
 
 msgid "gluon-luci-node-role:role:node"
 msgstr "Freifunk Erfurt Knoten"
+
+msgid "gluon-config-mode:domain"
+msgstr "Domäne"
+
+msgid "gluon-config-mode:domain-select"
+msgstr ""
+"Hier hast du die Möglichkeit, die Mesh-Domäne, in der sich dein Knoten "
+"befindet, auszuwählen. Bitte denke daran, dass sich dein Knoten nur mit den "
+"Knoten der ausgewählten Domäne verbinden kann."  
