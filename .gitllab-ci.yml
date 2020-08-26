@@ -1,0 +1,159 @@
+image: registry.gitlab.freifunk-stuttgart.de/firmware/ffs-buildenv:master
+
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - generate_date
+  - update
+  - build
+  - package
+
+generate_date:
+  stage: generate_date
+  script: 
+    - date '+%Y-%m-%d' > build.date
+  artifacts:
+    paths:
+      - build.date
+    expire_in: 1 day
+
+update:
+  stage: update
+  script:
+    - make -C gluon update GLUON_SITEDIR="$CI_PROJECT_DIR" FFS_BUILD_DATE=$(cat build.date)
+  artifacts:
+    paths:
+      - gluon/
+    expire_in: 1 day
+
+.target:
+  stage: build
+  script:
+    - make -C gluon GLUON_SITEDIR="$CI_PROJECT_DIR" GLUON_TARGET="$GLUON_TARGET" GLUON_BRANCH=stable FFS_BUILD_DATE=$(cat build.date) V=1 -j`nproc`
+  except:
+    - tags
+  artifacts: 
+    paths:
+      - gluon/output/
+    expire_in: 1 day
+  cache:
+    paths:
+      - gluon/openwrt/dl
+      - gluon/openwrt/staging_dir
+    key: "build-$CI_COMMIT_REF_SLUG"
+ 
+target:ar71xx-generic:
+  extends: .target
+  variables:
+    GLUON_TARGET: ar71xx-generic
+ 
+target:ar71xx-tiny:
+  extends: .target
+  variables:
+    GLUON_TARGET: ar71xx-tiny
+ 
+target:ar71xx-nand:
+  extends: .target
+  variables:
+    GLUON_TARGET: ar71xx-nand
+ 
+#target:ath79-generic:
+#  extends: .target
+#  variables:
+#    GLUON_TARGET: ath79-generic
+ 
+target:brcm2708-bcm2708:
+  extends: .target
+  variables:
+    GLUON_TARGET: brcm2708-bcm2708
+ 
+target:brcm2708-bcm2709:
+  extends: .target
+  variables:
+    GLUON_TARGET: brcm2708-bcm2709
+ 
+target:ipq40xx-generic:
+  extends: .target
+  variables:
+    GLUON_TARGET: ipq40xx
+ 
+#target:ipq806x-generic:
+#  extends: .target
+#  variables:
+#    GLUON_TARGET: ipq806x-generic
+ 
+#target:lantiq-xrx200:
+#  extends: .target
+#  variables:
+#    GLUON_TARGET: lantiq-xrx200
+ 
+#target:lantiq-xway:
+#  extends: .target
+#  variables:
+#    GLUON_TARGET: lantiq-xway
+ 
+target:mpc85xx-generic:
+  extends: .target
+  variables:
+    GLUON_TARGET: mpc85xx-generic
+ 
+target:mpc85xx-p1020:
+  extends: .target
+  variables:
+    GLUON_TARGET: mpc85xx-p1020
+ 
+target:ramips-mt7620:
+  extends: .target
+  variables:
+    GLUON_TARGET: ramips-mt7620
+ 
+target:ramips-mt7621:
+  extends: .target
+  variables:
+    GLUON_TARGET: ramips-mt7621
+ 
+target:ramips-mt76x8:
+  extends: .target
+  variables:
+    GLUON_TARGET: ramips-mt76x8
+ 
+target:ramips-rt305x:
+  extends: .target
+  variables:
+    GLUON_TARGET: ramips-rt305x
+ 
+target:sunxi-cortexa7:
+  extends: .target
+  variables:
+    GLUON_TARGET: sunxi-cortexa7
+ 
+target:x86-generic:
+  extends: .target
+  variables:
+    GLUON_TARGET: x86-generic
+ 
+target:x86-geode:
+  extends: .target
+  variables:
+    GLUON_TARGET: x86-geode
+ 
+target:x86-64:
+  extends: .target
+  variables:
+    GLUON_TARGET: x86-64
+
+package:
+  stage: package
+  script:
+    - for branch in "stable" "beta" "nightly" "experimental"; do make -C gluon manifest GLUON_BRANCH="$branch" GLUON_SITEDIR="$CI_PROJECT_DIR" FFS_BUILD_DATE=$(cat build.date) V=1; done
+    - if [ -n "$GLUON_SIGN_KEY" ]; then cd gluon && for branch in "nightly" "experimental" "stable"; do ./contrib/sign.sh <(echo "$GLUON_SIGN_KEY") "output/images/sysupgrade/$branch.manifest"; done; fi
+  cache:
+    paths:
+      - gluon/openwrt/dl
+    key: "package"
+  artifacts:
+    paths:
+      - gluon/output
+    expire_in: 7 days
