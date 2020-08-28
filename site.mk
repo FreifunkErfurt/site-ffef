@@ -1,29 +1,27 @@
 GLUON_FEATURES := \
-	respondd \
+	alfred \
 	autoupdater \
-	config-mode-autoupdater \
-	config-mode-contact-info \
-	config-mode-core \
-	config-mode-geo-location \
-	config-mode-hostname \
-	config-mode-mesh-vpn \
+	config-mode-domain-select \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
-	web-admin \
-	web-autoupdater \
-	web-network \
-	web-wifi-config \
+	ebtables-source-filter \
 	mesh-batman-adv-14 \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
 	radvd \
-	setup-mode \
-	status-page
+	respondd \
+	status-page \
+	web-advanced \
+	web-private-wifi \
+	web-wizard
 	
-GLUON_PACKAGES := \
-	iptables \
+# musste raus um erst mal eine Version zu erstellen
+#cconfig-mode-geo-location-osm \
+	
+GLUON_SITE_PACKAGES := \
 	haveged \
-	iwinfo
+	iwinfo \
+	respondd-module-airtime
 
 DEFAULT_GLUON_RELEASE := 1.7.0
 
@@ -33,7 +31,7 @@ GLUON_MULTIDOMAIN=1
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
-GLUON_PRIORITY ?= 0
+GLUON_PRIORITY ?= 14
 
 GLUON_LANGS ?= de en
 
@@ -41,7 +39,7 @@ GLUON_LANGS ?= de en
 GLUON_REGION := eu
 
 # Build images with ath10k-based drivers for IBSS (Ad-Hoc)
-GLUON_ATH10K_MESH := 11s
+GLUON_ATH10K_MESH := ibss
 
 # Build for deprecated devices
 # possible values= 0 or full
