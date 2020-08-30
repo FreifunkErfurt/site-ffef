@@ -2,10 +2,11 @@ GLUON_FEATURES := \
 	alfred \
 	autoupdater \
 	config-mode-domain-select \
+	scheduled-domain-switch \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
-	mesh-batman-adv-14 \
+	ebtables-limit-arp \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
 	radvd \
