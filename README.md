@@ -1,8 +1,9 @@
 # Freifunk Erfurt - Firmware builds
 
-### How to build the Gluon based Freifunk Erfurt Firmware
+## How to build the Gluon based Freifunk Erfurt Firmware
 
-#### GCC to Version 9
+### GCC to Version 9
+
 The actual gluon version doesn't work with gcc in version 10. So this steps work for gcc to version 9.
 
 ``` bash
@@ -17,7 +18,7 @@ make update # Get other repositories used by Gluon
 make GLUON_TARGET=target # Build Gluon for a target
 ```
 
-#### GCC with Version 10
+### GCC with Version 10
 
 You need to install docker for on your machine.
 
@@ -34,7 +35,8 @@ docker run -it --rm -v $(pwd):/gluon gluon:v20xx.x.x # starts the docker contain
 make update # Get other repositories used by Gluon
 make GLUON_TARGET=target # Build Gluon for a target
 ```
-#### Targets
+
+### Targets
 
 To see a complete list of supported targets, call
 
@@ -44,7 +46,7 @@ make
 
 without setting GLUON_TARGET.
 
-For further informations about supported hardware and targets please see [Supported Devices & Architectures ](http://gluon.readthedocs.io/en/latest/index.html#supported-devices-architectures) in the official Gluon documentation.
+For further informations about supported hardware and targets please see [Supported Devices & Architectures](http://gluon.readthedocs.io/en/latest/index.html#supported-devices-architectures) in the official Gluon documentation.
 
 #### Additional informations
 
