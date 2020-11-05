@@ -18,7 +18,7 @@ GLUON_FEATURES := \
 	web-wizard
 	
 # musste raus um erst mal eine Version zu erstellen
-#cconfig-mode-geo-location-osm \
+# config-mode-geo-location-osm \
 	
 GLUON_SITE_PACKAGES := \
 	haveged \
