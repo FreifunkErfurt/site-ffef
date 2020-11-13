@@ -6,7 +6,6 @@ GLUON_FEATURES := \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
-	ebtables-limit-arp \
 	mesh-batman-adv-14 \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
@@ -15,11 +14,7 @@ GLUON_FEATURES := \
 	status-page \
 	web-advanced \
 	web-private-wifi \
-	web-wizard
-	
-# musste raus um erst mal eine Version zu erstellen
-# config-mode-geo-location-osm \
-	
+	web-wizard	
 GLUON_SITE_PACKAGES := \
 	haveged \
 	iwinfo \
