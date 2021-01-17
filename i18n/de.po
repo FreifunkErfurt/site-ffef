@@ -23,20 +23,12 @@ msgstr ""
 "kann sich dein Knoten mit dem Erfurter Mesh-VPN verbinden. Bitte "
 "schicke dazu diesen Schlüssel und den Namen deines Knotens "
 "(<em><%=pcdata(hostname)%></em>) an "
-"<a href=\"mailto:vpn@erfurt.freifunk.net?subject="
-"<%= urlencode('Anmeldung: ' .. hostname) %>&amp;body="
-"<%= urlencode('# ' .. hostname .. '\n# ' .. sysconfig.primary_mac .. '\nkey ') %>"
-"%22<%= pubkey %>%22;"
-"<%= urlencode('\n\nIch habe zur Kenntnis genommen, dass der im ') %>"
-"<%= urlencode('Knoten von mir eingetragene Kontakt im Meshnetz ') %>"
-"<%= urlencode('öffentlich abfragbar ist und von beliebigen Diensten ') %>"
-"<%= urlencode('(z.B. der Freifunk-Karte) veröffentlicht werden kann.') %>"
-"<%= urlencode('\n\nGruß, \n\n') %>"
-"\">vpn@erfurt.freifunk.net</a>. Deine E-Mail Adresse wird "
-"selbstverständlich vertraulich behandelt und nicht weitergegeben."
-"</p>"
+
+"<a href=\"mailto:vpn@erfurt.freifunk.net\">vpn@erfurt.freifunk.net</a>."
 "<div class=\"the-key\">"
-"# <%= pcdata(hostname) %><br />"
+" # <%=pcdata(hostname)%>"
+" <br/>"
+
 "<%= pubkey %>"
 "</div>"
 "<p>Dein Knoten startet gerade neu und wird anschließend versuchen, sich mit "
@@ -77,24 +69,15 @@ msgstr ""
 "Mode neustarten.</p>"
 "<p>Viel Spaß mit deinem Knoten und der Erkundung von Freifunk!</p>"
 
-# Leave empty to use the default text, which can be found in:
-# package/gluon-config-mode-hostname/i18n/
-msgid "gluon-config-mode:hostname-help"
-msgstr ""
+msgid "gluon-luci-node-role:role:node"
+msgstr "Freifunk Erfurt Knoten"
 
-# Leave empty to use the default text, which can be found in:
-# package/gluon-config-mode-geo-location/i18n/
-msgid "gluon-config-mode:geo-location-help"
-msgstr ""
+msgid "gluon-config-mode:domain"
+msgstr "Domäne"
 
-msgid "gluon-config-mode:altitude-label"
+msgid "gluon-config-mode:domain-select"
 msgstr ""
-
-# Leave empty to use the default text, which can be found in:
-# package/gluon-config-mode-contact-info/i18n/
-msgid "gluon-config-mode:contact-help"
-msgstr ""
-
-msgid "gluon-config-mode:contact-note"
-msgstr ""
+"Hier hast du die Möglichkeit, die Mesh-Domäne, in der sich dein Knoten "
+"befindet, auszuwählen. Bitte denke daran, dass sich dein Knoten nur mit den "
+"Knoten der ausgewählten Domäne verbinden kann."  
 

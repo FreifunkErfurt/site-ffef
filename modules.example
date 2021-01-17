@@ -20,11 +20,3 @@
 ##  PACKAGES_$feedname_BRANCH
 #   the branch to check out
 #PACKAGES_MY_OWN_PACKAGES_BRANCH=my_branch
-
-# for each feed name given, add the corresponding PACKAGES_* lines
-#GLUON_SITE_FEEDS='tsys'
-
-# *miau!*
-#PACKAGES_TSYS_REPO=https://github.com/TobleMiner/gluon-tsys
-#PACKAGES_TSYS_COMMIT=e704dc0500590ae7209ad3cba96250c2b1aa2d8f
-#PACKAGES_TSYS_BRANCH=master

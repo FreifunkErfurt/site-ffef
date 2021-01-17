@@ -1,35 +1,34 @@
+GLUON_FEATURES := \
+	alfred \
+	autoupdater \
+	config-mode-domain-select \
+	scheduled-domain-switch \
+	ebtables-filter-multicast \
+	ebtables-filter-ra-dhcp \
+	ebtables-source-filter \
+	mesh-batman-adv-14 \
+	mesh-batman-adv-15 \
+	mesh-vpn-fastd \
+	radvd \
+	respondd \
+	status-page \
+	web-advanced \
+	web-private-wifi \
+	web-wizard	
 GLUON_SITE_PACKAGES := \
-	gluon-mesh-batman-adv-14 \
-	gluon-alfred \
-	gluon-autoupdater \
-	gluon-core \
-	gluon-config-mode-hostname \
-	gluon-config-mode-autoupdater \
-	gluon-config-mode-mesh-vpn \
-	gluon-config-mode-geo-location \
-	gluon-config-mode-contact-info \
-	gluon-ebtables-filter-multicast \
-	gluon-ebtables-filter-ra-dhcp \
-	gluon-web-admin \
-	gluon-web-autoupdater \
-	gluon-web-node-role \
-	gluon-web-network \
-	gluon-web-wifi-config \
-	gluon-mesh-vpn-fastd \
-	gluon-radvd \
-	gluon-respondd \
-	gluon-setup-mode \
-	gluon-status-page \
+	haveged \
 	iwinfo \
-	iptables \
-	haveged
+	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := nightly-$(shell date '+%Y%m%d')
+DEFAULT_GLUON_RELEASE := 1.7.0
+
+# Allow Multidomains
+GLUON_MULTIDOMAIN=1
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
-GLUON_PRIORITY ?= 0
+GLUON_PRIORITY ?= 14
 
 GLUON_LANGS ?= de en
 
@@ -38,3 +37,12 @@ GLUON_REGION := eu
 
 # Build images with ath10k-based drivers for IBSS (Ad-Hoc)
 GLUON_ATH10K_MESH := ibss
+
+# Build for deprecated devices
+# possible values= 0 or full
+GLUON_DEPRECATED=full
+
+#zram for tiny devices
+ifeq ($(GLUON_TARGET),ar71xx-tiny)
+	GLUON_SITE_PACKAGES += zram-swap
+endif
