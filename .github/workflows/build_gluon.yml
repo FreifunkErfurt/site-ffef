@@ -6,9 +6,7 @@ name: Build Gluon
 on:
   push:
     branches:
-      - master
-      - next
-      - v20*
+      - nightly
     paths:
       - "modules"
       - "Makefile"
