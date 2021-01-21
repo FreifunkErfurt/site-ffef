@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ nightly ]
+  pull_request:
+    branches: [ nightly ]
+
+jobs:
+  generate_date:
+    container: registry.gitlab.freifunk-stuttgart.de/firmware/ffs-buildenv:master
+    runs-on: ubuntu-lateest
+    steps:
+      - run: date '+%Y-%m-%d' > build.date
+      - name: Store Date 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build_date
+          path: build.date
+  build:
+    runs-on: ubuntu-latest
+    needs: [generate_date]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
