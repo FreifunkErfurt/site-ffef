@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Dependencies
-        run: /home/runner/work/site-ffef/site-ffef/contrib/actions/install-dependencies.sh
+        run: sudo /home/runner/work/site-ffef/site-ffef/contrib/actions/install-dependencies.sh
       - name: Build
         run: contrib/actions/run-build.sh ${{ matrix.target }}
       - name: Archive build logs
