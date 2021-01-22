@@ -41,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Permissions
+        run: chmod +x contrib/actions/run-build.sh
       - name: Build
         run: contrib/actions/run-build.sh ${{ matrix.target }}
       - name: Archive build logs
