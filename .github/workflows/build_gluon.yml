@@ -42,7 +42,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Permissions
-        run: chmod +x contrib/actions/run-build.sh
+        run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
+      - name: Install Dependencies
+        run: sudo contrib/actions/install-dependencies.sh
       - name: Build
         run: contrib/actions/run-build.sh ${{ matrix.target }}
       - name: Archive build logs
