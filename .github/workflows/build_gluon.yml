@@ -32,7 +32,7 @@ jobs:
           uses: nebularg/actions-luacheck@v1.1.0
           with:
             files: site.conf
-            config: gluon/.luacheckrc         
+            config: ./gluon/.luacheckrc         
   build_firmware:
     strategy:
       fail-fast: false
