@@ -13,6 +13,6 @@ echo "Baue Target: "$GLUON_TARGET
 echo "make -C gluon update GLUON_SITEDIR="$GLUON_SITEDIR" -j1 V=s"
 make -C gluon update GLUON_SITEDIR="$GLUON_SITEDIR" -j1 V=s
 
-echo "-C gluon GLUON_TARGET="$GLUON_TARGET" GLUON_BRANCH=nightly GLUON_SITEDIR="$GLUON_SITEDIR" V=1 -j`nproc`"
-make -C gluon GLUON_TARGET="$GLUON_TARGET" GLUON_BRANCH=nightly GLUON_SITEDIR="$GLUON_SITEDIR" V=1 -j`nproc`
+echo " make -C gluon GLUON_TARGET="$GLUON_TARGET" GLUON_BRANCH=nightly GLUON_SITEDIR="$GLUON_SITEDIR" V=1 -j`nproc`"
+make -C gluon GLUON_TARGET='"$GLUON_TARGET"' GLUON_BRANCH='nightly' GLUON_SITEDIR='"$GLUON_SITEDIR"' V=1 -j`nproc`
 
