@@ -28,13 +28,19 @@ jobs:
         target: [ar71xx-generic, ar71xx-tiny, ar71xx-nand, ath79-generic, brcm2708-bcm2708, brcm2708-bcm2709, ipq40xx-generic, ipq806x-generic, lantiq-xrx200, lantiq-xway, mpc85xx-generic, mpc85xx-p1020, ramips-mt7620, ramips-mt7621, ramips-mt76x8, ramips-rt305x, sunxi-cortexa7, x86-generic, x86-geode, x86-legacy, x86-64, ar71xx-mikrotik, brcm2708-bcm2710, mvebu-cortexa9]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - name: Auschecken
+        uses: actions/checkout@v2.3.4
         with:
           submodules: recursive
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
       - name: Install Dependencies
         run: sudo contrib/actions/install-dependencies.sh
+      - name: c
+        uses: nebularg/actions-luacheck@v1.1.0
+        with:
+          files: site.conf
+          config: gluon/.luacheckrc
       - name: Build
         run: contrib/actions/run-build.sh ${{ matrix.target }}
       - name: Archive build logs
@@ -42,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.target }}_logs
-          path: openwrt/logs
+          path: logs
       - name: Archive build output
         uses: actions/upload-artifact@v1
         with:
