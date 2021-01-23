@@ -33,10 +33,6 @@ jobs:
           submodules: recursive
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
-      - name: JSON LINT
-        uses: OrRosenblatt/validate-json-action@0.1.0
-        with:
-          json: site.conf
       - name: Install Dependencies
         run: sudo contrib/actions/install-dependencies.sh
       - name: Build
