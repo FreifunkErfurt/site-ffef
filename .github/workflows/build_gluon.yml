@@ -22,7 +22,7 @@ on:
       - "site.mk"
 jobs:
   Configcheck:
-    runs-on: ubuntu-latest
+     runs-on: ubuntu-latest
      steps:
         - name: Auschecken
           uses: actions/checkout@v2.3.4
