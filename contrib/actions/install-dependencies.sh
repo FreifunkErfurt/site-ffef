@@ -13,4 +13,4 @@ mkdir logs
 mkdir output
 pwd
 ls -l
-Echo "ENDE install-dependencies.sh "
+echo "ENDE install-dependencies.sh "
