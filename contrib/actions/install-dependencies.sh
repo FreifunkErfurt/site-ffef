@@ -11,6 +11,7 @@ rm -rf /var/lib/apt/lists/*
 ln -s ../ gluon/site
 mkdir logs
 mkdir output
+chown runner:docker logs output
 pwd
 ls -l
 echo "ENDE install-dependencies.sh "
