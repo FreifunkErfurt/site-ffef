@@ -11,6 +11,6 @@ export BUILD_LOG=1
 
 echo "Baue Target: "$GLUON_TARGET
 echo "make -C gluon update"
-make -C gluon update >> logs/build.log
+make -C gluon update >> logs/$GLUON_TARGET.log
 echo "make -C gluon V=s"
-make -C gluon  V=s >> logs/build.log
+make -C gluon  V=s >> logs/$GLUON_TARGET.log
