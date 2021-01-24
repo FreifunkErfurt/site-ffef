@@ -11,5 +11,6 @@ rm -rf /var/lib/apt/lists/*
 ln -s ../ gluon/site
 mkdir logs
 mkdir output
-
+pwd
+ls -l
 Echo "ENDE install-dependencies.sh "
