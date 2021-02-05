@@ -1,0 +1,48 @@
+
+name: Build Single
+on:
+  workflow_dispatch:
+jobs:
+  Configcheck:
+     runs-on: ubuntu-latest
+     steps:
+        - name: Auschecken
+          uses: actions/checkout@v2.3.4
+          with:
+            ref: nightly
+            submodules: recursive
+        - name: Konfigcheck
+          uses: nebularg/actions-luacheck@v1.1.0
+          with:
+            files: site.conf
+            args: --config ./gluon/.luacheckrc         
+  build_firmware:
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [ar71xx-tiny,lantiq-xrx200, lantiq-xway,x86-generic]
+    runs-on: ubuntu-latest
+    needs: Configcheck
+    steps:
+      - name: Auschecken
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: nightly
+          submodules: recursive
+      - name: Permissions
+        run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
+      - name: Install Dependencies
+        run: sudo contrib/actions/install-dependencies.sh
+      - name: Build
+        run: contrib/actions/run-build.sh ${{ matrix.target }}
+      - name: Archive build logs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.target }}_logs
+          path: logs
+      - name: Archive build output
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.target }}_output
+          path: gluon/output
