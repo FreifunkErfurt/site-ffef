@@ -22,7 +22,8 @@ jobs:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
       - name: Buildtargetmatrix
-        run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
+        run: |
+           target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
            echo ::set-output name=target::{\"include\":$(echo $target)}\";
            echo $target
       - name: Dump GitHub context
