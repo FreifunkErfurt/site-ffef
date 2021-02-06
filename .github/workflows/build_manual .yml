@@ -23,13 +23,13 @@ jobs:
         with:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
-      - id: Buildtargetmatrix
+      - name: Buildtargetmatrix
         run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1  |  /bin/sed 's/$/"/' |   /bin/sed 's/^/"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' );
          echo ::set-output name=target::"[$(echo $target)]";echo $target       
   check_target:
     needs: Configcheck   
     steps:
-         - run: echo ${{ needs.Configcheck.outputs.target }}
+         - run: echo ${{ needs.Configcheck }}
     runs-on: ubuntu-latest      
   build_firmware:
     needs: check_target
