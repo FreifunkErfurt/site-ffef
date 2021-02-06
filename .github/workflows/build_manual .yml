@@ -9,14 +9,14 @@ jobs:
         - name: Auschecken
           uses: actions/checkout@v2.3.4
           with:
-            ref: $GITHUB_REF
+            ref: github.ref
             submodules: recursive
         - name: Konfigcheck
           uses: nebularg/actions-luacheck@v1.1.0
           with:
             files: site.conf
             args: --config ./gluon/.luacheckrc
-        - name: Builtargetdmatrix
+        - name: Builtargetmatrix
           run: echo "find targets"      
                echo "::add-matrix name=target::"  $( make list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
             
@@ -31,7 +31,7 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v2.3.4
         with:
-          ref: $GITHUB_REF
+          ref: github.ref
           submodules: recursive
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
