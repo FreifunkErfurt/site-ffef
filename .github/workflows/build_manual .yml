@@ -10,8 +10,7 @@ on:
 jobs:
   Configcheck:
      outputs:
-       target: ${{ fromJson(["Test1", "Test2"]) }}
-       default_target: 'test'
+       matrix: ${{ steps.setmatrix.outputs.matrix }}
      runs-on: ubuntu-latest
      steps:
       - name: Auschecken
@@ -24,10 +23,11 @@ jobs:
         with:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
-      - id: Buildtargetmatrix
-        run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1  |  /bin/sed 's/$/"/' |   /bin/sed 's/^/"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' );
-         echo '::set-output name=target::[$(echo $target)]';   
-         echo '::set-output name=default_target::EINHORN';  
+      - name: Buildmatrix
+        id: setmatrix
+        run: | 
+         matrix=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1  |  /bin/sed 's/$/"/' |   /bin/sed 's/^/"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' )
+         echo ::set-output name=matrix::{\"include\":$(echo $matrix)}\"
   check_target:
     needs: Configcheck   
     steps:
@@ -37,8 +37,7 @@ jobs:
     needs: check_target
     strategy:
       fail-fast: false
-      matrix:
-        target: ${{ needs.Configcheck.outputs.target }}
+      matrix: ${{ fromJson(needs.Configcheck.outputs.matrix) }}
     runs-on: ubuntu-latest
     steps:
       - name: Auschecken
