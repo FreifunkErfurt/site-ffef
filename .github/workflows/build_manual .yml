@@ -11,7 +11,7 @@ jobs:
   Configcheck:
      outputs:
        target: ${{ steps.Buildtargetmatrix.target }}
-       default_target: ${{ steps.Buildtargetmatrix.default_target }}
+       default_target: 'test'
      runs-on: ubuntu-latest
      steps:
       - name: Auschecken
@@ -31,7 +31,7 @@ jobs:
   check_target:
     needs: Configcheck   
     steps:
-         - run: echo ${{ toJSON(needs.Configcheck.outputs) }}
+         - run: echo ${{ toJSON(needs.Configcheck) }}
     runs-on: ubuntu-latest      
   build_firmware:
     needs: check_target
