@@ -20,8 +20,7 @@ jobs:
           uses: nebularg/actions-luacheck@v1.1.0
           with:
             files: site.conf
-            args: --config ./gluon/.luacheckrc
-          
+            args: --config ./gluon/.luacheckrc         
         - name: Builtargetmatrix
           run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
      outputs:
