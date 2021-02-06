@@ -10,7 +10,7 @@ on:
 jobs:
   Configcheck:
      outputs:
-       target: '["test1","test2"]'
+       target: ${{ fromJson(["Test1", "Test2"]) }}
        default_target: 'test'
      runs-on: ubuntu-latest
      steps:
@@ -31,7 +31,7 @@ jobs:
   check_target:
     needs: Configcheck   
     steps:
-         - run: echo toJSON(needs.Configcheck.outputs)
+         - run: echo ${{ toJson( needs.Configcheck.outputs )}}
     runs-on: ubuntu-latest      
   build_firmware:
     needs: check_target
