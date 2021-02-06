@@ -21,9 +21,9 @@ jobs:
           with:
             files: site.conf
             args: --config ./gluon/.luacheckrc
+        - run: ls -la
         - name: Builtargetmatrix
-          run: echo "find targets"      
-               echo "::add-matrix name=target::"  $( make list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
+          run: echo "::add-matrix name=target::"  $( make -s -C gluon list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
             
   build_firmware:
     needs: Configcheck
@@ -36,7 +36,7 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v2.3.4
         with:
-          ref: github.event.inputs.branch
+          ref: ${{ github.event.inputs.branch }}
           submodules: recursive
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
