@@ -22,20 +22,13 @@ jobs:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
       - name: Buildtargetmatrix
-        run: |
+        run: 
            target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
            echo ::set-output name=target::{\"include\":$(echo $target)}\";
-           echo $target
-      - name: Dump GitHub context
-        env:
-            GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"   
-      - name: Dump target context
-        env:
-          MATRIX_CONTEXT: ${{ toJSON(steps.Buildtargetmatrix.target) }}
-        run: echo "$MATRIX_CONTEXT"           
+           echo $target          
      outputs:
-       target: ${{ steps.Buildtargetmatrix.target }}   
+       target: ${{ steps.Buildtargetmatrix.target }}
+        
   build_firmware:
     needs: Configcheck
     strategy:
