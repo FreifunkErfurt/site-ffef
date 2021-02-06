@@ -31,7 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ${{ needs.Configcheck.target }}
+        target: ${{ needs.Configcheck.outputs.target }}
     runs-on: ubuntu-latest
     steps:
       - name: Auschecken
