@@ -41,7 +41,7 @@ jobs:
      
       - name: Dump target context
         env:
-          MATRIX_CONTEXT: ${{ toJSON(target) }}
+          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"  
            
      outputs:
