@@ -29,18 +29,13 @@ jobs:
       - name: Dump GitHub context
         env:
             GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ echo steps }}
-        run: echo "$STEPS_CONTEXT"     
+        run: echo "$GITHUB_CONTEXT"   
       - name: Dump target context
         env:
           MATRIX_CONTEXT: ${{ toJSON(steps.Buildtargetmatrix.target) }}
         run: echo "$MATRIX_CONTEXT"           
      outputs:
        target: ${{ steps.Buildtargetmatrix.target }}   
-
   build_firmware:
     needs: Configcheck
     strategy:
