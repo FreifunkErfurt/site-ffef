@@ -32,7 +32,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Dump steps context
         env:
-          STEPS_CONTEXT: ${{ steps }}
+          STEPS_CONTEXT: ${{ echo steps }}
         run: echo "$STEPS_CONTEXT"     
       - name: Dump target context
         env:
