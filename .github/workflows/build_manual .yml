@@ -32,7 +32,7 @@ jobs:
     needs: Configcheck
     runs-on: ubuntu-latest       
     steps:
-      - run: echo ${{ fromJson(needs.Configcheck.outputs.matrix )}}
+      - run: echo ${{ needs.Configcheck.outputs.matrix }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
