@@ -1,5 +1,5 @@
 
-name: Build Single
+name: build-manual 
 on:
   workflow_dispatch:
 jobs:
