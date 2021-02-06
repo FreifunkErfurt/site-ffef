@@ -26,8 +26,8 @@ jobs:
       - name: Buildmatrix
         id: setmatrix
         run: | 
-         matrix=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1  |  /bin/sed 's/$/"/' |   /bin/sed 's/^/"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' )
-         echo ::set-output name=matrix::{\"include\":$(echo $matrix)}\"
+         matrix=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 |  /bin/sed 's/$/"}/' |   /bin/sed 's/^/{"target":"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' )
+         echo ::set-output name=matrix::{\"include\":[$(echo $matrix)]}
   check_target:
     needs: Configcheck
     runs-on: ubuntu-latest       
