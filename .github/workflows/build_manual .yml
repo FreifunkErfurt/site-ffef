@@ -31,7 +31,7 @@ jobs:
   check_target:
     needs: Configcheck   
     steps:
-         - run: echo ${{ toJSON(needs.Configcheck) }}
+         - run: echo ${{ toJSON(needs.Configcheck.outputs) }}
     runs-on: ubuntu-latest      
   build_firmware:
     needs: check_target
