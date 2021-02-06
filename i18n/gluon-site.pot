@@ -9,3 +9,6 @@ msgstr ""
 
 msgid "gluon-config-mode:reboot"
 msgstr ""
+
+msgid "gluon-luci-node-role:role:node"
+msgstr ""
