@@ -9,7 +9,7 @@ jobs:
         - name: Auschecken
           uses: actions/checkout@v2.3.4
           with:
-            ref: nightly
+            ref: $GITHUB_REF
             submodules: recursive
         - name: Konfigcheck
           uses: nebularg/actions-luacheck@v1.1.0
@@ -17,23 +17,21 @@ jobs:
             files: site.conf
             args: --config ./gluon/.luacheckrc
         - name: Builtargetdmatrix
-          id: set-matrix
-          run: make list-targets BROKEN=1 | /bin/sed '$!s/$/,/'
-     outputs:
-            matrix: ${{ steps.set-matrix.outputs.matrix }}          
+          run: echo "find targets"      
+               echo "::add-matrix name=target::"  $( make list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
             
   build_firmware:
+    needs: Configcheck
     strategy:
       fail-fast: false
       matrix:
-        target: ${{ needs.Configcheck.outputs.matrix }}
+        target: ${{ needs.Configcheck.target }}
     runs-on: ubuntu-latest
-    needs: Configcheck
     steps:
       - name: Auschecken
         uses: actions/checkout@v2.3.4
         with:
-          ref: nightly
+          ref: $GITHUB_REF
           submodules: recursive
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
