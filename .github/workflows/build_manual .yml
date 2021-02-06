@@ -23,14 +23,9 @@ jobs:
             args: --config ./gluon/.luacheckrc
           
         - name: Builtargetmatrix
-          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' )
-        - id: set-matrix
-          run: |   
-              branchName=$(echo '${{ github.ref }}' | sed 's,refs/heads/,,g')  
-              matrix=$(jq --arg branchName "$branchName" 'map(. | select((.runOn==$branchName) or (.runOn=="always")) )' matrix_includes.json)        
-              echo ::set-output name=matrix::{\"include\":$(echo $matrix)}\"
+          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ); echo $target
      outputs:
-       target: ${{ steps.set-matrix.matrix }}   
+       target: ${{ steps.Builtargetmatrix.target }}   
 
   build_firmware:
     needs: Configcheck
