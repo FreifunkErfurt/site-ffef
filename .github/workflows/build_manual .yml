@@ -25,7 +25,11 @@ jobs:
             args: --config ./gluon/.luacheckrc         
       - name: Buildtargetmatrix
         run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );echo ::set-output name=target::[$(echo $target)];       
-            
+  check_target:
+    needs: Configcheck   
+    steps:
+         - run: echo ${{ needs.Configcheck.outputs.target }}
+    runs-on: ubuntu-latest      
   build_firmware:
     needs: Configcheck
     strategy:
