@@ -30,20 +30,14 @@ jobs:
         env:
             GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJSON(job) }}
-        run: echo "$JOB_CONTEXT"
       - name: Dump steps context
         env:
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$STEPS_CONTEXT"
-     
+          STEPS_CONTEXT: ${{ steps }}
+        run: echo "$STEPS_CONTEXT"     
       - name: Dump target context
         env:
-          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
-        run: echo "$MATRIX_CONTEXT"  
-           
+          MATRIX_CONTEXT: ${{ toJSON(steps.Buildtargetmatrix.target) }}
+        run: echo "$MATRIX_CONTEXT"           
      outputs:
        target: ${{ steps.Buildtargetmatrix.target }}   
 
