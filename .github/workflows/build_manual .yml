@@ -22,7 +22,7 @@ jobs:
             files: site.conf
             args: --config ./gluon/.luacheckrc
         - name: Builtargetmatrix
-          run: echo "::add-matrix name=target::"  $( cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
+          run: echo "::add-matrix name=target::"  $( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ) 
             
   build_firmware:
     needs: Configcheck
