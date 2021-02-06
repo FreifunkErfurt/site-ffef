@@ -31,10 +31,11 @@ jobs:
   check_target:
     needs: Configcheck   
     steps:
-         - run: echo ${{ fromJson(needs.Configcheck.outputs )}}
-    runs-on: ubuntu-latest      
+         - run: echo ${{ fromJson(needs.Configcheck.outputs.matrix )}}
+    runs-on: ubuntu-latest    
+      
   build_firmware:
-    needs: check_target
+    needs: Configcheck
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.Configcheck.outputs.matrix) }}
