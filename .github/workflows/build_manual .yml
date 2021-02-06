@@ -16,15 +16,15 @@ jobs:
           with:
             ref: ${{ github.event.inputs.branch }}
             submodules: recursive
-        - name: Konfigcheck
+        - name: spellcheck
           uses: nebularg/actions-luacheck@v1.1.0
           with:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
-        - name: Builtargetmatrix
-          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
+        - name: Buildtargetmatrix
+          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );echo $target
      outputs:
-       target: ${{ steps.Builtargetmatrix.target }}   
+       target: ${{ steps.Buildtargetmatrix.target }}   
 
   build_firmware:
     needs: Configcheck
