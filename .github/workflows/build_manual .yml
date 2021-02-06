@@ -11,6 +11,7 @@ jobs:
   Configcheck:
      outputs:
        target: ${{ steps.Buildtargetmatrix.target }}
+       default_target: ${{ steps.Buildtargetmatrix.default_target }}
      runs-on: ubuntu-latest
      steps:
       - name: Auschecken
@@ -25,7 +26,8 @@ jobs:
             args: --config ./gluon/.luacheckrc         
       - name: Buildtargetmatrix
         run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1  |  /bin/sed 's/$/"/' |   /bin/sed 's/^/"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' );
-         echo '::set-output name=target::[$(echo $target)]';     
+         echo '::set-output name=target::[$(echo $target)]';   
+         echo '::set-output name=default_target::EINHORN';  
   check_target:
     needs: Configcheck   
     steps:
