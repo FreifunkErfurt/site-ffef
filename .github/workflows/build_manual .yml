@@ -23,7 +23,7 @@ jobs:
             args: --config ./gluon/.luacheckrc
           
         - name: Builtargetmatrix
-          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' ); echo $target
+          run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
      outputs:
        target: ${{ steps.Builtargetmatrix.target }}   
 
