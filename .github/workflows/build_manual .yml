@@ -9,6 +9,8 @@ on:
         default: 'nightly'
 jobs:
   Configcheck:
+     outputs:
+       target: ${{ steps.Buildtargetmatrix.target }}
      runs-on: ubuntu-latest
      steps:
       - name: Auschecken
@@ -22,19 +24,14 @@ jobs:
             files: site.conf
             args: --config ./gluon/.luacheckrc         
       - name: Buildtargetmatrix
-        run: 
-           target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );
-           echo ::set-output name=target::{\"include\":$(echo $target)}\";
-           echo $target          
-     outputs:
-       target: ${{ steps.Buildtargetmatrix.target }}
-        
+        run: target=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 | /bin/sed '$!s/$/,/' );echo ::set-output name=target::[$(echo $target)];       
+            
   build_firmware:
     needs: Configcheck
     strategy:
       fail-fast: false
       matrix:
-        target: ${{fromJson(needs.Configcheck.outputs.target)}}
+        target: ${{ needs.Configcheck.outputs.target }}
     runs-on: ubuntu-latest
     steps:
       - name: Auschecken
