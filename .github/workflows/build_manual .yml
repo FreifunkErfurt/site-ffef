@@ -32,7 +32,7 @@ jobs:
     needs: Configcheck
     runs-on: ubuntu-latest       
     steps:
-      - run: echo ${{ needs.Configcheck.outputs.matrix }}
+      - run: echo ${{ fromJson(needs.Configcheck.outputs.matrix) }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
@@ -57,11 +57,9 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
-           
-   
-      
+
   build_firmware:
-    needs: Configcheck
+    needs: check_target
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.Configcheck.outputs.matrix) }}
