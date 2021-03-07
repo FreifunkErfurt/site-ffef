@@ -12,9 +12,10 @@ GLUON_FEATURES := \
 	radvd \
 	respondd \
 	status-page \
+	web-admin \
 	web-advanced \
 	web-private-wifi \
-	web-wizard	
+	web-wizard
 GLUON_SITE_PACKAGES := \
 	haveged \
 	iwinfo \
