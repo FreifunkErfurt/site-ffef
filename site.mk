@@ -21,7 +21,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := 1.7.0
+DEFAULT_GLUON_RELEASE := 2019.1.3
 
 # Allow Multidomains
 GLUON_MULTIDOMAIN=1
