@@ -12,15 +12,16 @@ GLUON_FEATURES := \
 	radvd \
 	respondd \
 	status-page \
+	web-admin \
 	web-advanced \
 	web-private-wifi \
-	web-wizard	
+	web-wizard
 GLUON_SITE_PACKAGES := \
 	haveged \
 	iwinfo \
 	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := 1.7.0
+DEFAULT_GLUON_RELEASE := 2019.1.3
 
 # Allow Multidomains
 GLUON_MULTIDOMAIN=1
