@@ -57,3 +57,10 @@ jobs:
         with:
           name: ${{ matrix.target }}_output
           path: gluon/output
+      - name: upload
+        env:
+         SSH_KEY: ${{ secrets.GITSYNC_PRIVATE_KEY }}
+        run: |
+         eval "$(ssh-agent -s)"
+         ssh-add - <<< "${SSH_KEY}"
+         rsync -avz '-e ssh -o StrictHostKeyChecking=no -p215' gluon/output/ gitsync@ffef.erfurt.freifunk.net:/home/gitsync/hotfolder/
