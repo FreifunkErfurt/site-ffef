@@ -63,5 +63,5 @@ jobs:
         run: |
          eval "$(ssh-agent -s)"
          ssh-add - <<< "${SSH_KEY}"
-         rsync -avz '-e ssh -o StrictHostKeyChecking=no -p2215' gluon/output/ gitsync@map.erfurt.freifunk.net:/hotfolder/
+         rsync -avz '-e ssh -o StrictHostKeyChecking=no -p2215' gluon/output/ gitsync@map.erfurt.freifunk.net:/hotfolder/${{ github.event.inputs.branch }}/
 
