@@ -44,6 +44,6 @@ GLUON_ATH10K_MESH := ibss
 GLUON_DEPRECATED=full
 
 #zram for tiny devices
-ifeq ($(GLUON_TARGET),ar71xx-tiny)
+ifneq ($(GLUON_TARGET),ar71xx-tiny)
 	GLUON_SITE_PACKAGES += zram-swap
 endif
