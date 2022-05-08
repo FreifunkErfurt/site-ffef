@@ -37,8 +37,7 @@ GLUON_SITE_PACKAGES := \
 	ffho-web-ap-timer \
 	ffmuc-simple-radv-filter \
 	iptables \
-	iwinfo \
-	respondd-module-airtime
+	iwinfo
 
 ##	DEFAULT_GLUON_RELEASE
 #		version string to use for images
