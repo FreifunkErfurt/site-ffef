@@ -1,10 +1,10 @@
+name: Build ffef firmware
 
-name: build-manual 
 on:
   workflow_dispatch:
    inputs:
       branch:
-        description: 'Welchen Branch'     
+        description: 'Which branch?'
         required: true
         default: 'nightly'
 jobs:
