@@ -1,0 +1,21 @@
+# This file allows specifying additional repositories to use
+# when building gluon.
+#
+# In most cases, it is not required so don't add it.
+
+##	GLUON_SITE_FEEDS
+#		for each feed name given, add the corresponding PACKAGES_* lines
+#		documented below
+GLUON_SITE_FEEDS='ffmuc'
+
+##	PACKAGES_FFMUC_REPO
+#		the  git repository from where to clone the package feed
+PACKAGES_FFMUC_REPO=https://github.com/freifunkMUC/gluon-packages.git
+
+##	PACKAGES_FFMUC_COMMIT
+#		the version/commit of the git repository to clone
+PACKAGES_FFMUC_COMMIT=403526c6881f62d7258292b9b6170dc4124c4078
+
+##  PACKAGES_FFMUC_BRANCH
+#   the branch to check out
+PACKAGES_FFMUC_BRANCH=main
