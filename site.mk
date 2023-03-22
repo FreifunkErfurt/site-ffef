@@ -6,7 +6,6 @@ GLUON_FEATURES := \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
-	mesh-batman-adv-14 \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
 	radvd \
@@ -16,12 +15,13 @@ GLUON_FEATURES := \
 	web-advanced \
 	web-private-wifi \
 	web-wizard
+
 GLUON_SITE_PACKAGES := \
 	haveged \
 	iwinfo \
 	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := 2019.1.3
+DEFAULT_GLUON_RELEASE := 2020.1.4
 
 # Allow Multidomains
 GLUON_MULTIDOMAIN=1
@@ -35,9 +35,6 @@ GLUON_LANGS ?= de en
 
 # Build images to update from EU-specific firmware (TP-Link)
 GLUON_REGION := eu
-
-# Build images with ath10k-based drivers for IBSS (Ad-Hoc)
-GLUON_ATH10K_MESH := ibss
 
 # Build for deprecated devices
 # possible values= 0 or full
