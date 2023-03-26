@@ -1,3 +1,8 @@
+##	GLUON_FEATURES
+#		Specify Gluon features/packages to enable;
+#		Gluon will automatically enable a set of packages
+#		depending on the combination of features listed
+
 GLUON_FEATURES := \
 	alfred \
 	autoupdater \
@@ -5,10 +10,10 @@ GLUON_FEATURES := \
 	scheduled-domain-switch \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
+	ebtables-limit-arp \
 	ebtables-source-filter \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
-	radvd \
 	respondd \
 	status-page \
 	web-admin \
@@ -16,31 +21,48 @@ GLUON_FEATURES := \
 	web-private-wifi \
 	web-wizard
 
+##	GLUON_MULTIDOMAIN
+#		Build gluon with multidomain support.
+
+GLUON_MULTIDOMAIN := 1
+
+##	GLUON_SITE_PACKAGES
+#		Specify additional Gluon/OpenWrt packages to include here;
+#		A minus sign may be prepended to remove a packages from the
+#		selection that would be enabled by default or due to the
+#		chosen feature flags
+
 GLUON_SITE_PACKAGES := \
-	haveged \
 	iwinfo \
 	respondd-module-airtime
 
-DEFAULT_GLUON_RELEASE := 2020.1.4
+##	DEFAULT_GLUON_RELEASE
+#		version string to use for images
+#		gluon relies on
+#			opkg compare-versions "$1" '>>' "$2"
+#		to decide if a version is newer or not.
 
-# Allow Multidomains
-GLUON_MULTIDOMAIN=1
+DEFAULT_GLUON_RELEASE := 2020.2.3
 
-# Allow overriding the release number from the command line
+# Variables set with ?= can be overwritten from the command line
+
+##	GLUON_RELEASE
+#		call make with custom GLUON_RELEASE flag, to use your own release version scheme.
+#		e.g.:
+#			$ make images GLUON_RELEASE=23.42+5
+#		would generate images named like this:
+#			gluon-ff%site_code%-23.42+5-%router_model%.bin
+
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
+# Default priority for updates.
 GLUON_PRIORITY ?= 14
 
-GLUON_LANGS ?= de en
+# Region code required for some images; supported values: us eu
+GLUON_REGION ?= eu
 
-# Build images to update from EU-specific firmware (TP-Link)
-GLUON_REGION := eu
+# Languages to include
+GLUON_LANGS ?= en de
 
-# Build for deprecated devices
-# possible values= 0 or full
-GLUON_DEPRECATED=full
-
-#zram for tiny devices
-ifneq ($(GLUON_TARGET),ar71xx-tiny)
-	GLUON_SITE_PACKAGES += zram-swap
-endif
+# Do not build images for deprecated devices
+GLUON_DEPRECATED ?= full
