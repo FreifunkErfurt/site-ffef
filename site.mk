@@ -66,3 +66,8 @@ GLUON_LANGS ?= en de
 
 # Do not build images for deprecated devices
 GLUON_DEPRECATED ?= full
+
+#zram for tiny devices
+ifneq ($(GLUON_TARGET),ar71xx-tiny)
+       GLUON_SITE_PACKAGES += zram-swap
+endif
