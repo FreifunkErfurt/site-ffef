@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   Configcheck:
-     runs-on: ubuntu-22.04
+     runs-on: ubuntu-20.04
      steps:
         - name: Auschecken
           uses: actions/checkout@v2.3.4
@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         target: [ar71xx-tiny,lantiq-xrx200, lantiq-xway,x86-generic]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     needs: Configcheck
     steps:
       - name: Auschecken
