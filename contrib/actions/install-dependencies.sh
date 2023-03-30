@@ -14,5 +14,6 @@ mkdir output
 chown runner:docker logs output
 pwd
 ls -l
+df -h
 echo "ENDE install-dependencies.sh "
 
