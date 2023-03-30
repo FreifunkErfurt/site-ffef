@@ -1,2 +1,2 @@
-deb http://mirror.netcologne.de/ubuntu/ jammy main restricted universe
-deb http://mirror.netcologne.de/ubuntu/ jammy-updates main restricted universe
+deb http://mirror.netcologne.de/ubuntu/ focal main restricted universe
+deb http://mirror.netcologne.de/ubuntu/ focal-updates main restricted universe
