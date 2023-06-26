@@ -1,21 +1,11 @@
-name: Build Gluon
+name: Build ffef firmware
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - nightly
-    paths:
-      - ".github/workflows/build-gluon.yml"
-      - "domains/**"
-      - "site.conf"
-      - "site.mk"
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - ".github/workflows/build-gluon.yml"
-      - "domains/**"
-      - "site.conf"
-      - "site.mk"
+    inputs:
+      branch:
+        description: 'Which branch?'
+        required: true
+        default: 'nightly'
 jobs:
   Configcheck:
     outputs:
@@ -67,3 +57,10 @@ jobs:
         with:
           name: ${{ matrix.target }}_output
           path: gluon/output
+      - name: upload
+        env:
+          SSH_KEY: ${{ secrets.GITSYNC_PRIVATE_KEY }}
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "${SSH_KEY}"
+          rsync -avz '-e ssh -o StrictHostKeyChecking=no -p2215' gluon/output/ gitsync@map.erfurt.freifunk.net:/hotfolder/${{ github.event.inputs.branch }}/
