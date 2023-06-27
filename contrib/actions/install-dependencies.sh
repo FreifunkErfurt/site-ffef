@@ -8,13 +8,6 @@ apt update
 apt install subversion build-essential libncurses-dev python2.7 python3 zlib1g-dev
 apt clean
 rm -rf /var/lib/apt/lists/*
-ln -s ../ gluon/site
-mkdir logs
-mkdir output
-chown runner:docker logs output
-pwd
-ls -l
-df -h
 dpkg -l
 echo "ENDE install-dependencies.sh "
 

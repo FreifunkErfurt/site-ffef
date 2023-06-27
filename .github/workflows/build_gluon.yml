@@ -25,8 +25,7 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v3.5.3
         with:
-          ref: ${{ github.event.inputs.branch }}
-          submodules: recursive
+          submodules: true
       - name: Konfigcheck
         uses: nebularg/actions-luacheck@v1.1.0
         with:
@@ -35,8 +34,11 @@ jobs:
       - name: Buildmatrix
         id: setmatrix
         run: |
-          matrix=$( ln -s ../ gluon/site; cd gluon; make -s list-targets BROKEN=1 |  /bin/sed 's/$/"}/' |   /bin/sed 's/^/{"target":"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' )
+          ln -s ../ site
+          matrix=$( make -s list-targets BROKEN=1 | /bin/sed 's/$/"}/' | /bin/sed 's/^/{"target":"/' | /bin/sed ':a;N;$!ba;s/\n/,/g' )
+          echo "Targets: $matrix"
           echo "matrix={\"include\":[$(echo $matrix)]}" >> $GITHUB_OUTPUT
+        working-directory: gluon
   build_firmware:
     needs: Configcheck
     strategy:
@@ -47,21 +49,23 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v3.5.3
         with:
-          ref: ${{ github.event.inputs.branch }}
-          submodules: recursive
+          submodules: true
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
       - name: Install Dependencies
         run: sudo contrib/actions/install-dependencies.sh
       - name: Build
-        run: contrib/actions/run-build.sh ${{ matrix.target }}
-        working-directory: ./gluon
+        run: |
+          mkdir output logs
+          ln -s ../ site
+          ../contrib/actions/run-build.sh ${{ matrix.target }} -j3
+        working-directory: gluon
       - name: Archive build logs
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}_logs
-          path: logs
+          path: gluon/logs
       - name: Archive build output
         uses: actions/upload-artifact@v3
         with:
