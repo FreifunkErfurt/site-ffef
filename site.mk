@@ -65,4 +65,4 @@ GLUON_REGION ?= eu
 GLUON_LANGS ?= en de
 
 # Do not build images for deprecated devices
-GLUON_DEPRECATED ?= full
+GLUON_DEPRECATED ?= upgrade
