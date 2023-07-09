@@ -10,4 +10,3 @@ apt clean
 rm -rf /var/lib/apt/lists/*
 dpkg -l
 echo "ENDE install-dependencies.sh "
-
