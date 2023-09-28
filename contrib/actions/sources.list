@@ -1,2 +1,2 @@
-deb http://mirror.netcologne.de/ubuntu/ bionic main restricted
-deb http://mirror.netcologne.de/ubuntu/ bionic-updates main restricted
+deb http://mirror.netcologne.de/ubuntu/ focal main restricted universe
+deb http://mirror.netcologne.de/ubuntu/ focal-updates main restricted universe

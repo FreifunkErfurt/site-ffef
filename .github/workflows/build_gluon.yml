@@ -1,21 +1,21 @@
-name: Build ffef firmware
+name: Build Gluon
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Which branch?'
-        required: true
-        default: 'nightly'
-      make_options:
-        description: 'Make Options'
-        required: true
-        default: '-j3'
-        type: choice
-        options:
-          - '-j3'
-          - '-j2'
-          - '-j1'
-          - 'V=s'
+  push:
+    branches:
+      - nightly
+    paths:
+      - ".github/workflows/build-gluon.yml"
+      - "domains/**"
+      - "site.conf"
+      - "site.mk"
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - ".github/workflows/build-gluon.yml"
+      - "domains/**"
+      - "site.conf"
+      - "site.mk"
 jobs:
   Configcheck:
     outputs:
@@ -25,7 +25,6 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v3.5.3
         with:
-          ref: ${{ github.event.inputs.branch }}
           submodules: true
       - name: Konfigcheck
         uses: nebularg/actions-luacheck@v1.1.0
@@ -50,7 +49,6 @@ jobs:
       - name: Auschecken
         uses: actions/checkout@v3.5.3
         with:
-          ref: ${{ github.event.inputs.branch }}
           submodules: true
       - name: Permissions
         run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
@@ -60,7 +58,7 @@ jobs:
         run: |
           mkdir output logs
           ln -s ../ site
-          ../contrib/actions/run-build.sh ${{ matrix.target }} ${{ inputs.make_options }}
+          ../contrib/actions/run-build.sh ${{ matrix.target }} -j3
         working-directory: gluon
       - name: Archive build logs
         if: ${{ !cancelled() }}
@@ -73,11 +71,3 @@ jobs:
         with:
           name: ${{ matrix.target }}_output
           path: gluon/output
-      - name: upload
-        if: github.repository == 'FreifunkErfurt/site-ffef'
-        env:
-          SSH_KEY: ${{ secrets.GITSYNC_PRIVATE_KEY }}
-        run: |
-          eval "$(ssh-agent -s)"
-          ssh-add - <<< "${SSH_KEY}"
-          rsync -avz '-e ssh -o StrictHostKeyChecking=no -p2215' gluon/output/ gitsync@map.erfurt.freifunk.net:/hotfolder/${{ github.event.inputs.branch }}/

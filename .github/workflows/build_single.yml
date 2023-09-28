@@ -1,0 +1,55 @@
+
+name: Build Single
+on:
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: 'Which targets?'
+        required: true
+        default: '[ar71xx-tiny, lantiq-xrx200, lantiq-xway, x86-generic]'
+jobs:
+  Configcheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Auschecken
+        uses: actions/checkout@v3.5.3
+        with:
+          submodules: true
+      - name: Konfigcheck
+        uses: nebularg/actions-luacheck@v1.1.0
+        with:
+          files: site.conf
+          args: --config ./gluon/.luacheckrc
+  build_firmware:
+    needs: Configcheck
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ inputs.targets }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Auschecken
+        uses: actions/checkout@v3.5.3
+        with:
+          submodules: true
+      - name: Permissions
+        run: chmod +x contrib/actions/run-build.sh contrib/actions/install-dependencies.sh
+      - name: Install Dependencies
+        run: sudo contrib/actions/install-dependencies.sh
+      - name: Build
+        run: |
+          mkdir output logs
+          ln -s ../ site
+          ../contrib/actions/run-build.sh ${{ matrix.target }} -j3
+        working-directory: gluon
+      - name: Archive build logs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.target }}_logs
+          path: gluon/logs
+      - name: Archive build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.target }}_output
+          path: gluon/output
