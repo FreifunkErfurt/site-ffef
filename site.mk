@@ -42,7 +42,7 @@ GLUON_SITE_PACKAGES := \
 #			opkg compare-versions "$1" '>>' "$2"
 #		to decide if a version is newer or not.
 
-DEFAULT_GLUON_RELEASE := 2021.1.2.1
+DEFAULT_GLUON_RELEASE := 2022.1.4
 
 # Variables set with ?= can be overwritten from the command line
 
