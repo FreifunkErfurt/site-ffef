@@ -62,12 +62,12 @@ jobs:
         working-directory: gluon
       - name: Archive build logs
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}_logs
           path: gluon/logs
       - name: Archive build output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}_output
           path: gluon/output
