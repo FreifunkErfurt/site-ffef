@@ -28,7 +28,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
           submodules: true
       - name: Konfigcheck
-        uses: nebularg/actions-luacheck@v1.1.0
+        uses: nebularg/actions-luacheck@v1.1.2
         with:
           files: site.conf
           args: --config ./gluon/.luacheckrc
