@@ -20,7 +20,7 @@ jobs:
   Configcheck:
     outputs:
       matrix: ${{ steps.setmatrix.outputs.matrix }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Auschecken
         uses: actions/checkout@v4.2.2
@@ -44,7 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.Configcheck.outputs.matrix) }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Auschecken
         uses: actions/checkout@v4.2.2
