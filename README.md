@@ -21,7 +21,9 @@ To see a complete list of supported targets, call
 ```bash
 make
 ```
-
+```
+cd gluon && git fetch && git checkout 88cc0b7 && cd .. && git add gluon && git commit -m "Updated submodule to v2025.1"
+```
 without setting GLUON_TARGET.
 
 For further informations about supported hardware and targets please see [Supported Devices & Architectures](https://gluon.readthedocs.io/en/latest/user/supported_devices.html) in the official Gluon documentation.
