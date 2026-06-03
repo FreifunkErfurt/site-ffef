@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Auschecken
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           submodules: true
       - name: Konfigcheck
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Auschecken
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           submodules: true
       - name: Permissions
